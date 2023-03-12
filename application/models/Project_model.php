@@ -172,7 +172,7 @@ class Project_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('project');
 		$this->db->join('project_detail', 'project.id = project_detail.id_project');
-		$this->db->where('status_bayar', 'Unfinished');
+		// $this->db->where('status_bayar', 'Unfinished');
 		$this->db->where('id',$id_project);
 		
 		$query = $this->db->get();

@@ -84,7 +84,7 @@
                 ?>
             
 
-                <tr <?= ($data['status_bayar'] == "Belum Bayar") ? "class='table-danger'" : "class='table-success'" ?>>
+                <tr class = <?= ($data['status_bayar'] == "finished") ? "table-success"  : "table-danger" ?>>
                     <td class="text-danger"><?php echo $data['cicilan_ke']; ?></td>
                     <td class="text-danger">-</td>
                     <td class="text-danger"><?php echo $data['jumlah_project']; ?></td>

@@ -86,6 +86,7 @@ class Project extends CI_Controller
             'jatuh_tempo' => $jatuh_tempo
 
         );
+        // var_dump($data);die();
         $this->db->insert('project', $data);
         
         $cicilan_ke = $this->input->post('cicilan_ke');
@@ -94,7 +95,7 @@ class Project extends CI_Controller
         $id = $this->db->insert_id();
         for ($i = 1; $i <= $cicilan_ke; $i++) {
             $dataproject = array(
-                'id' => $id,
+                'id_project' => $id,
                 'cicilan_ke' => $i,
                 'nama_project' => $nama_project,
                 'status_bayar' => $status,

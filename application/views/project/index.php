@@ -43,7 +43,7 @@
                     <td><?php echo $item->nama_project ?></td>
                     <td><?php echo $item->tenor ?></td>
                     <td><?php echo $item->status ?></td>
-                    <td><a data-toggle="modal" data-target="#myModal" class="btn btn-sm btn-primary" onclick="javascript:edit_project(<?php echo $item->id; ?>)" title="Detail"><i class="glyphicon glyphicon-pencil"></i> Detail Task</a></td>
+                    <td><a href="#" data-toggle="modal" data-target="#myModal" class="btn btn-sm btn-primary" onclick="javascript:edit_project(<?php echo $item->id; ?>)" title="Detail"><i class="glyphicon glyphicon-pencil"></i> Detail Task</a></td>
                 </tr>
                     <?php $no++; } ?>
                 </table>
@@ -116,12 +116,13 @@ function save() {
         dataType: "JSON",
         success: function(data)
         {
+            console.log(data);
 
             if(data.status) //if success close modal and reload ajax table
             {
                 $('#modal_form_tambah').modal('hide');
                 $('#modal_form').modal('hide');
-                // reload_table();
+                reload_table();
             }
 
             $('#btnSave').text('save'); //change button text
@@ -131,6 +132,7 @@ function save() {
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
+            console.log(data);
             alert('Error adding / update data');
             $('#btnSave').text('save'); //change button text
             $('#btnSave').attr('disabled',false); //set button enable
@@ -182,8 +184,10 @@ function edit_project(id) {
 }
 
 function reload_table() {
-    table.ajax.reload(null,false); //reload datatable ajax
     location.reload();
+    // $('#postable').DataTable().ajax.reload()
+    // table.ajax.reload(null,false); //reload datatable ajax
+    // location.reload();
 }
 
 function delete_project(id) {
@@ -211,10 +215,15 @@ function delete_project(id) {
 </script>
 
 <div class="modal displaycontent" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-<?php include('detail_project.php'); ?>
-
+    <?php include('detail_project.php'); ?>
 </div>
+
+<!-- Modal tambah project -->
+<div class="modal fade" id="modal_form_tambah" tabindex="-1" role="dialog" aria-labelledby="myModalAddLabel" aria-hidden="true">
+    <?php include('tambah_project.php'); ?>
+</div> 
+<!-- end modal tambah project -->
+
 
 
 <script>
